@@ -1,0 +1,35 @@
+<div class="flex flex-wrap items-start w-full max-w-800 m-8">
+  <ng-container *ngFor="let filter of filters">
+    <fuse-card class="flex flex-col max-w-80 w-full px-8 pt-6 pb-4 filter-list mr-8">
+      <div class="flex items-center justify-between">
+        <div class="text-2xl font-semibold leading-tight">{{filter.name}}</div>
+        <div class="-mr-3">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="listCard05Menu">
+            <mat-icon
+              class="icon-size-5"
+              [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+          </button>
+          <mat-menu #listCard05Menu="matMenu">
+            <button mat-menu-item (click)="selectAll()">全选</button>
+            <button mat-menu-item (click)="selectNone()">重置</button>
+          </mat-menu>
+        </div>
+      </div>
+      <div class="flex flex-col mt-3">
+        <ng-container
+          *ngFor="let item of items">
+          <mat-checkbox
+            class="my-1"
+            (change)="onItemChange($event)"
+            [value]="item"
+            [checked]="selected.includes(item)"
+            [color]="'primary'">
+            {{item}}
+          </mat-checkbox>
+        </ng-container>
+      </div>
+    </fuse-card>
+  </ng-container>
+</div>

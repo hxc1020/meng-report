@@ -1,0 +1,78 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+  <!-- Header -->
+  <div class="bg-card">
+    <div class="flex flex-col w-full max-w-screen-xl mx-auto px-6 sm:px-8">
+      <div class="flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-8 sm:my-12">
+        <!-- Avatar and name -->
+        <div class="flex flex-auto items-center min-w-0">
+          <div class="flex-0 w-16 h-16 rounded-full overflow-hidden">
+          </div>
+          <div class="flex flex-col min-w-0 ml-4">
+            <ng-container *transloco="let t">
+              <div class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">
+                数据看板
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="flex items-center mt-6 sm:mt-0 sm:ml-2 space-x-3">
+          <input
+            id="avatar-file-input"
+            class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+            type="file"
+            [multiple]="false"
+            [accept]="'xlsx, xls'"
+            (change)="uploadData($event)"
+          >
+          <label
+            class="flex items-center justify-center w-48 h-10 cursor-pointer hover:bg-hover bg-hover mat-flat-button"
+            for="avatar-file-input"
+            matRipple>
+            选择Excel文件
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-container *ngIf="data;else chooseFile">
+    <div class="flex-auto border-t -mt-px pt-4 sm:pt-6">
+      <div class="w-full max-w-screen-xl mx-auto">
+        <mat-tab-group
+          [animationDuration]="'0'"
+          class="sm:px-2">
+
+          <mat-tab label="主看板">
+            <ng-template matTabContent>
+              <app-main-dashboard [header]="header"
+                                  [data]="data"
+                                  [errorField]="errorFiled">
+              </app-main-dashboard>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab label="月度数据看板">
+            <ng-template matTabContent>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 w-full min-w-0"></div>
+              <app-month-dashboard [header]="header"
+                                   [data]="data"
+                                   [errorField]="errorFiled">
+              </app-month-dashboard>
+            </ng-template>
+          </mat-tab>
+
+        </mat-tab-group>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #chooseFile>
+    <div class="mt-2 text-xl text-center text-secondary mt-10">
+      没有数据，请上传看板数据
+    </div>
+  </ng-template>
+
+
+</div>

@@ -1,0 +1,65 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 w-full min-w-0">
+
+  <div
+    class="sm:col-span-2 md:col-span-6 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'服务差错明细(次数)'"
+                        [displayItems]="errorField.serviceError"
+                        [header]="header"
+                        [data]="allSumData">
+    </app-vertical-chart>
+  </div>
+  <!--        2-->
+  <!-- Task distribution -->
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'红线差错明细(次数)'"
+                        [displayItems]="errorField.basicError"
+                        [header]="header"
+                        [data]="allSumData">
+    </app-vertical-chart>
+
+  </div>
+  <!-- Task distribution -->
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'营销差错明细(次数)'"
+                        [displayItems]="errorField.saleError"
+                        [header]="header"
+                        [data]="allSumData">
+    </app-vertical-chart>
+  </div>
+
+  <!-- Task distribution -->
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-6 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'业务差错明细(次数)'"
+                        [displayItems]="errorField.businessError"
+                        [header]="header"
+                        [data]="allSumData">
+    </app-vertical-chart>
+  </div>
+
+  <!--        3 -->
+  <!-- Task distribution -->
+  <div
+    class="sm:col-span-3 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-radar-chart [title]="'个人数据纵览'"
+                       [displayItems]="errorField.allError"
+                       [header]="header"
+                       [data]="groupByUserData">
+    </app-radar-chart>
+  </div>
+
+  <!-- Task distribution -->
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-radar-chart [title]="'分组数据纵览'"
+                       [displayItems]="errorField.allError"
+                       [header]="header"
+                       [data]="groupByGroupData">
+
+    </app-radar-chart>
+  </div>
+
+
+</div>

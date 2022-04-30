@@ -12,7 +12,7 @@
   ],
   "extraResources": [
     {
-      "from": "dist",
+      "from": "dist/fuse",
       "to": "app",
       "filter": [
         "**/*"
@@ -20,22 +20,22 @@
     }
   ],
   "win": {
-    "icon": "dist/assets/icons",
+    "icon": "dist/fuse/assets/icons",
     "target": [
       "portable"
     ]
   },
   "portable": {
-    "splashImage": "dist/assets/icons/electron.bmp"
+    "splashImage": "dist/fuse/assets/icons/electron.bmp"
   },
   "mac": {
-    "icon": "dist/assets/icons",
+    "icon": "dist/fuse/assets/icons",
     "target": [
       "dmg"
     ]
   },
   "linux": {
-    "icon": "dist/assets/icons",
+    "icon": "dist/fuse/assets/icons",
     "target": [
       "AppImage"
     ]

@@ -47,3 +47,5 @@ export type ErrorFiled = {
   saleError: string[];
   allError: string[];
 }
+
+export type Select = 'ALL' | string | number

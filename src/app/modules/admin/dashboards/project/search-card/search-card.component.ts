@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MatCheckboxChange} from '@angular/material/checkbox';
+import {Select} from '../type';
 import _ from 'lodash';
-import {DashBoardFilter} from '../type';
+import {ThemePalette} from '@angular/material/core';
 
 @Component({
   selector: 'app-search-card',
@@ -9,47 +9,44 @@ import {DashBoardFilter} from '../type';
   styleUrls: ['./search-card.component.scss']
 })
 export class SearchCardComponent implements OnInit {
-  @Input() items = [];
-  @Output() select = new EventEmitter<Array<String>>();
-  @Input() filters: DashBoardFilter[];
+  @Output() select = new EventEmitter<Map<string, Select>>();
+  @Input() filters: [][];
+  @Input() filterNames;
 
   output;
   selected;
-
-  @Input()
-  get title(): string {
-    return this._title;
-  }
-
-  set title(value: string) {
-    this._title = value;
-  }
-
-  private _title = '';
+  enabledFilters;
 
   constructor() {
-    this.selected = [];
+    this.selected = new Map<string, Select>();
   }
 
   ngOnInit(): void {
+    this.filters.forEach((_, i) => this.selected[this.filterNames[i]] = '全选');
+    this.enabledFilters = this.filters;
   }
 
-  onItemChange($event: MatCheckboxChange) {
-    if ($event.checked) {
-      this.selected = [...this.selected, $event.source.value];
-    } else {
-      _.remove(this.selected, item => item === $event.source.value);
+  getFilter(f, name) {
+    let index = this.filterNames.indexOf(name);
+    return _.uniq(f.map(f => f[index]));
+  }
+
+  selectAll(name: string) {
+    this.selected[name] = '全选';
+    this.select.emit(this.selected);
+    this.enabledFilters = this.filters;
+  }
+
+  filterColor(item: any, name: any): ThemePalette {
+    return this.selected[name] === item || this.selected[name] === '全选' ? 'primary' : 'accent';
+  }
+
+  onClick(item: any, name: any) {
+    this.selected[name] = item;
+    this.select.emit(this.selected);
+    if (name === '组别') {
+      let index = this.filterNames.indexOf(name);
+      this.enabledFilters = this.filters.filter(f => f[index] === item);
     }
-    this.select.emit(this.selected);
-  }
-
-  selectAll() {
-    this.selected = [...this.items];
-    this.select.emit(this.selected);
-  }
-
-  selectNone() {
-    this.selected = [];
-    this.select.emit(this.selected);
   }
 }

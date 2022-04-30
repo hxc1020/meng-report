@@ -24,6 +24,9 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
 import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { MonthDashboardComponent } from './month-dashboard/month-dashboard.component';
 import { StackedChartComponent } from './stacked-chart/stacked-chart.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {FuseScrollbarModule} from '../../../../../@fuse/directives/scrollbar';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { StackedChartComponent } from './stacked-chart/stacked-chart.component';
     TranslocoModule,
     SharedModule,
     FuseCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule,
+    FuseScrollbarModule,
+    MatChipsModule
   ]
 })
 export class ProjectModule {

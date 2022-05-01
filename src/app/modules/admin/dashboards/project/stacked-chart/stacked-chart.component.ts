@@ -13,18 +13,27 @@ export class StackedChartComponent implements OnInit {
   @Input() displayItems = [];
   @Input() header: string[];
 
-  @Input() data;
+  @Input()
+  get data() {
+    return this._data;
+  }
+
+  set data(value) {
+    this._data = value;
+    this.loadChartOptions(value);
+  }
+
+  private _data;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.loadChartOptions();
   }
 
-  private loadChartOptions() {
+  private loadChartOptions(data) {
     this.chartOptions = {
-      series: this.data.data.filter(it => this.displayItems.includes(it.name)),
+      series: data.data.filter(it => this.displayItems.includes(it.name)),
       chart: {
         type: 'bar',
         height: 350,

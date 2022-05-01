@@ -37,6 +37,7 @@ export class MainDashboardComponent implements OnInit {
 
   private loadData() {
     this.allSumData = sumArray(this.filteredData);
+    console.log(this.allSumData)
     this.groupByUserData = this.loadGroupData(this.header.indexOf('客服ID'));
     this.groupByGroupData = this.loadGroupData(this.header.indexOf('组别'));
     console.log(this.allSumData, this.groupByUserData, this.groupByGroupData);
@@ -67,10 +68,6 @@ export class MainDashboardComponent implements OnInit {
       }
     });
     console.log(this.filter);
-  }
-
-  private getColumnSet(index: number) {
-    return ['全选', ...new Set(this.data.map(d => d[index]))];
   }
 
   onFilterChange($event: Map<string, Select>) {

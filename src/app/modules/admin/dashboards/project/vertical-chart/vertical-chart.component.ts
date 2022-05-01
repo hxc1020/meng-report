@@ -13,6 +13,7 @@ export class VerticalChartComponent implements OnInit {
   @Input() title = '';
   @Input() displayItems = [];
   @Input() header: string[];
+  @Input() percent = false;
 
   @Input()
   get data() {
@@ -48,7 +49,7 @@ export class VerticalChartComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: '次数',
+          name: '',
           data: data.filter((_, index) => this.displayItemsIndex.includes(index))
         }
       ],
@@ -82,7 +83,20 @@ export class VerticalChartComponent implements OnInit {
             fontSize: '12px'
           }
         }
-      }
+      },
+      yaxis: {
+        title: {
+          text: this.percent ? '增长' : '次数'
+        },
+        labels: {
+          formatter: y => {
+            if (this.percent) {
+              return y.toFixed(0) + '%';
+            }
+            return y.toString();
+          }
+        }
+      },
     };
   }
 

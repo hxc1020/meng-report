@@ -1,12 +1,25 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 w-full min-w-0">
+  <div
+    class="sm:col-span-2 md:col-span-6 flex flex-col flex-auto rounded-2xl overflow-hidden">
+    <app-search-card [filters]="filter" [filterNames]="filerNames" (select)="onFilterChange($event)"></app-search-card>
+  </div>
 
   <div
     class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
     <app-stacked-chart [title]="'基础差错(次数)'"
-                        [displayItems]="errorField.basicError"
-                        [header]="header"
-                        [data]="groupByMonthData">
+                       [displayItems]="errorField.basicError"
+                       [header]="header"
+                       [data]="groupByMonthData">
     </app-stacked-chart>
+  </div>
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'基础差错环比('+momData.name+')'"
+                        [displayItems]="errorField.basicError"
+                        [header]="errorField.allError"
+                        [percent]="true"
+                        [data]="momData.data">
+    </app-vertical-chart>
   </div>
 
   <div
@@ -19,6 +32,15 @@
   </div>
   <div
     class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'服务差错环比('+momData.name+')'"
+                        [displayItems]="errorField.serviceError"
+                        [header]="errorField.allError"
+                        [percent]="true"
+                        [data]="momData.data">
+    </app-vertical-chart>
+  </div>
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
     <app-stacked-chart [title]="'业务差错(次数)'"
                        [displayItems]="errorField.businessError"
                        [header]="header"
@@ -27,10 +49,28 @@
   </div>
   <div
     class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'业务差错环比('+momData.name+')'"
+                        [displayItems]="errorField.businessError"
+                        [header]="errorField.allError"
+                        [percent]="true"
+                        [data]="momData.data">
+    </app-vertical-chart>
+  </div>
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
     <app-stacked-chart [title]="'营销差错(次数)'"
                        [displayItems]="errorField.saleError"
                        [header]="header"
                        [data]="groupByMonthData">
     </app-stacked-chart>
+  </div>
+  <div
+    class="sm:col-span-2 md:col-span-4 lg:col-span-3 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+    <app-vertical-chart [title]="'营销差错环比('+momData.name+')'"
+                        [displayItems]="errorField.saleError"
+                        [header]="errorField.allError"
+                        [percent]="true"
+                        [data]="momData.data">
+    </app-vertical-chart>
   </div>
 </div>
